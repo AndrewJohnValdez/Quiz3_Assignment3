@@ -7,6 +7,7 @@
 int userChoice;
 int base_value = 10;
 int max_value = 100;
+FILE * fPtr;
 
 void settings() {
     int choice;
@@ -28,13 +29,17 @@ void settings() {
 
     printf("New max value set \n");
     base_value = userInput;
+
+    fPtr = fopen("user_value.txt", "w+");
+    fprintf(fPtr, "%d", base_value);
+    fclose(fPtr);
     return;
 }
 
 void generator(int num) {
 
     int number;
-    char userInput[10];
+    char userInput[100];
     int userNum;
 
     srand(time(NULL));
@@ -72,6 +77,17 @@ void generator(int num) {
 int main() 
 {
     int key;
+    char fileVal[100];
+
+    fPtr = fopen("user_value.txt", "r+");
+    if(fPtr == NULL) {
+        fPtr = fopen("user_value.txt", "w+");
+        fprintf(fPtr, "%d", 10); //base value if file is new 
+    } else {
+        fgets(fileVal, 100, (FILE*)fPtr);
+        base_value = atoi(fileVal);
+    }
+    fclose(fPtr);
 
     //print a main menu at start
     printf("///////////////////\n");
@@ -101,6 +117,7 @@ int main()
             settings();
         } else if (userChoice == 3) {
             printf("Thanks for Playing\n");
+            fclose(fPtr);
             return EXIT_SUCCESS;
         }
 
