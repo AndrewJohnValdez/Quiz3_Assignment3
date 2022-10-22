@@ -33,7 +33,7 @@ void settings() {
 
 void generator(int num) {
 
-    int number = 0;
+    int number;
     char userInput[10];
     int userNum;
 
