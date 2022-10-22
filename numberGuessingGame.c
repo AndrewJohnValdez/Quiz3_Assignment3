@@ -24,14 +24,24 @@ save_user_max_number
 int userChoice;
 int base_value = 10;
 int max_value = 100;
-int N = 10;
 
 void settings() {
+    int choice;
+    int userInput;
+    int done = -1;
 
-}
-
-void playGame() {
+    printf("Please set your desired max value: (Limit: 100)\n");
+    scanf("%d", userInput);
     
+    do {
+        if(userInput < 1 || userInput > max_value) {
+            printf("Invalid input\n");
+        } else {
+            base_value = userInput;
+            printf("New max value set \n");
+            return;
+        }
+    } while(done = 0);
 }
 
 void generator(int num) {
@@ -43,6 +53,8 @@ void generator(int num) {
     srand(time(NULL));
 
     number = rand() % num;
+
+    gets(userInput);
     
     //if statements depending on the user guess and if correct or wrong
     do {
@@ -54,6 +66,7 @@ void generator(int num) {
         }
         userNum = atoi(userInput);
         if(userNum > base_value || userNum < 1) {
+            //checks for invalid guesses 
             printf("Please pick a number within the limits\n");
         } else if(userNum < number) {
             printf("Pick a higher value\n");
@@ -66,7 +79,6 @@ void generator(int num) {
             return;
         }
     } while (userNum != number);
-    //Create an if statement regarding invalid guesses (going past max_value or base_value or letters/decimals)
 }
 
 
@@ -96,12 +108,12 @@ int main()
     while(key = 1) {
         if(userChoice == 1) {
             //call method for game functions
-            generator(N);
+            generator(base_value);
         } else if (userChoice == 2) {
             //allow user to change base_value
             settings();
         } else if (userChoice == 3) {
-            printf("Thanks for Playing");
+            printf("Thanks for Playing\n");
             return EXIT_SUCCESS;
         }
 
