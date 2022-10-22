@@ -39,7 +39,7 @@ void generator(int num) {
 
     srand(time(NULL));
 
-    number = rand() % num;
+    number = (rand() % num) + 1;
 
     gets(userInput);
     
@@ -116,10 +116,3 @@ int main()
     }
     return EXIT_SUCCESS;
 }
-
-
-/*
-Must create a branch that will save the user's input value
-
-dynamic linking possible?
-*/
