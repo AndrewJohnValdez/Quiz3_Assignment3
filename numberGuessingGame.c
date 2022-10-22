@@ -29,19 +29,21 @@ void settings() {
     int choice;
     int userInput;
     int done = -1;
-
-    printf("Please set your desired max value: (Limit: 100)\n");
-    scanf("%d", userInput);
     
     do {
-        if(userInput < 1 || userInput > max_value) {
-            printf("Invalid input\n");
+        printf("Please set your desired max value: (Limit: 100)\n");
+        scanf("%d", &userInput);
+
+        if(userInput > 1 || userInput < max_value) {
+            done = 0;
         } else {
-            base_value = userInput;
-            printf("New max value set \n");
-            return;
+            printf("Invalid input\n");
         }
-    } while(done = 0);
+    } while(done == -1);
+
+    printf("New max value set \n");
+    base_value = userInput;
+    return;
 }
 
 void generator(int num) {
