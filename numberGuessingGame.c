@@ -1,20 +1,3 @@
-/*
-Create an interactive program
-    allows user to guess a number between 1-10 (default)
-    have main menu of up to 3 choices
-        1 - play game 
-        2 - ability to change value limit but cannot go past MAX VALUE
-            Note:
-                must be able to back out of this side menu
-        3 - quit
-            thank user for the program ends
-
-Create a new branch once program is completed
-save_user_max_number
-    remember the user's chosen max value for the next time the game starts (dynamic linking?)
-*/
-
-
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
@@ -30,11 +13,13 @@ void settings() {
     int userInput;
     int done = -1;
     
+    //while loop to keep the cycle continuing
     do {
         printf("Please set your desired max value: (Limit: 100)\n");
         scanf("%d", &userInput);
 
-        if(userInput > 1 || userInput < max_value) {
+        //if statement to check if the inputs are valid or not
+        if(userInput > 1 && userInput < max_value) {
             done = 0;
         } else {
             printf("Invalid input\n");
